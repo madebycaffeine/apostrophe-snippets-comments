@@ -1,5 +1,5 @@
 {
-  "name": "apos-snippets-comments",
+  "name": "apostrophe-snippets-comments",
   "version": "0.0.1",
   "description": "Apostrophe snippets with comments",
   "main": "index.js",
@@ -7,17 +7,16 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type": "git",
-    "url": "git@git.caffeine.co.il:dannyb/apostrophe-snippets-comments.git"
+    "type": "http",
+    "url": "https://github.com/madebycaffeine/apostrophe-snippets-comments.git"
   },
   "keywords": [
     "comments",
     "apostrophe",
-    "cms",
-    "punkave"
+    "apostrophe-snippets"
   ],
   "author": {
-    "name": "P'unk Avenue LLC"
+    "name": "Caffeine.co.il"
   },
   "license": "MIT",
   "dependencies": {
@@ -32,12 +31,11 @@
     "randy": "~1.4.2",
     "mongodb": "^1.4.26"
   },
-  "readme": "# apostrophe-events\n\n`apostrophe-events` adds upcoming events to the [Apostrophe](http://github.com/punkave/apostrophe) content management system. `apostrophe-events` provides both backend and frontend components, including a friendly UI built on Apostrophe's rich content editing features.\n\n`apostrophe-events` is similar to the [apostrophe-blog](http://github.com/punkave/apostrophe-blog) module, in that both of them subclass the [apostrophe-snippets](http://github.com/punkave/apostrophe-snippets) module. What this means in practice is that the editing experience is highly consistent and code duplication is minimized.\n\nAn RSS feed is included, with autodiscovery for browsers that support it (not many these days alas).\n\n",
   "readmeFilename": "README.md",
   "bugs": {
-    "url": "https://github.com/punkave/apostrophe-events/issues"
+    "url": "https://github.com/madebycaffeine/apostrophe-snippets-comments/issues"
   },
-  "homepage": "https://github.com/punkave/apostrophe-events",
+  "homepage": "https://github.com/madebycaffeine/apostrophe-snippets-comments",
   "_id": "apos-snippets-comments@0.0.1",
   "_from": "apos-snippets-comments@"
 }
