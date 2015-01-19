@@ -1,0 +1,42 @@
+{% extends "pageLayout.html" %}
+
+{% include "snippetMacros.html" %}
+
+{% block bodyClass %}{{ super() }} apos-snippet-page{% endblock %}
+
+{# Output the current content of the page, with buttons to edit it #}
+
+{% block subnav %}
+    <ol class="children">
+    {% for relative in page.children %}
+      <li><a href="{{ relative.url }}">{{ relative.title | e }}</a></li>
+    {% endfor %}
+    </ol>
+  {# And now filters... soon... #}
+{% endblock %}
+
+{% block main %}
+<section class="content_page">
+	<div class="wrapper">
+		<div class="main">
+			<h4> חדשות ואירועים </h4>
+			
+			<!-- {{ aposArea(page, 'beforeContent') }} -->
+			{{ log(items) }}
+			{{ renderSnippets(items, page.url) }}
+
+			
+ 
+			<div class="line"> </div>
+				{{ renderPager(pager, page.url) }}
+		</div>
+	</div>
+</section>
+{% endblock %}
+
+{% block sidebar %}
+
+  {# A regular free-form area follows, but with a restricted set of allowed types #}
+  {{ aposArea(page, 'sidebar', { controls: [ 'style', 'bold', 'italic', 'createLink', 'image', 'video' ] }) }}
+
+{% endblock %}

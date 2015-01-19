@@ -1,0 +1,43 @@
+{% macro eventSnippet (snippet) %}
+   <div class="event event-excerpt{%if aposAreaIsEmpty({ area: snippet.thumbnail })%} no-thumbnail{%endif%}">
+    <div class="event-info info-overlay">
+      {% if snippet.url %}
+        <a class="event-thumbnail-link" href="{{ snippet.url }}">
+      {% endif %}
+      {{ aposSingleton({ slug: snippet.slug + ':thumbnail', type: 'slideshow', area: snippet.thumbnail, edit: false, size: 'one-sixth' }) }}
+      <date class="date">
+        <span class="month">{{ snippet.startMonth }}</span>
+        <span class="day">{{ snippet.startDay }}</span>
+      </date>
+      {% if snippet.url %}
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="event-content">
+      <header class="event-heading">
+        <h5 class="event-category">{{ __('Event') }}</h5>
+        <h4 class="event-title">
+          {% if snippet.url %}
+            <a href="{{ snippet.url }}">
+          {% endif %}
+          {{ snippet.title | e }}
+          {% if snippet.url %}
+            </a>
+          {% endif %}
+        </h4>
+      </header>
+      <div class="event-body">
+       {{ snippet.organizer }}
+       <div class="event-information">
+        {{ aposArea({ area: snippet.body, edit: false }) }}
+       </div>
+      </div>
+    </div>
+    <a href="{{ snippet.url }}" class="event-more clearfix">{{ __('View Details') }}</a>
+  </div>
+{% endmacro %}
+
+{% for snippet in item._snippets %}
+  {{eventSnippet(snippet)}}
+{% endfor %}

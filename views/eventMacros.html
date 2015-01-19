@@ -1,0 +1,88 @@
+{% include 'pagerMacros.html' %}
+
+{% include 'pagerMacros.html' %}
+{# use renderEvents to show all items as full posts on a page #}
+
+{% macro renderEvents(items, pageUrl) %}
+  {% if items %}
+    {% for item in items %}
+      {{ renderEvent(item, pageUrl) }}
+    {% endfor %}
+  {% else %}
+    <h4>{{ __('There are no events yet.') }}</h4>
+  {% endif %}
+{% endmacro %}
+
+{% macro renderEvent(item, pageUrl, options) %}
+  <div class="apos-event">
+    <div class="apos-event-heading">
+      <h4>
+        <a href="{{ pageUrl }}/{{ item.slug }}">{{ item.title | e }}</a>      {% if options.edit and item._edit %}
+          <a class="apos-control apos-ui apos-button apos-edit-snippet-button" data-edit-{{ item.type | css }} data-slug="{{ item.slug }}" href="#"><i class="icon-pencil"></i> Edit</a>
+        {% endif %}
+      </h4>
+      <div class="blog-title-divider"></div>
+      <h6><date>{{ eventDateRange(item) }}</date></h6>
+    </div>
+    {{ aposSingleton(item, 'thumbnail', 'slideshow', { edit: false }) }}
+    <div class="apos-event-body">{{ aposArea(item, 'body', { edit: false }) }}</div>
+    {% if item.tags %}
+      <div class="apos-event-tags">
+        {{ __('File under') }}:
+        {% for tag in item.tags %}
+          <a href="{{ pageUrl }}?{{ { tag: tag } | query }}">{{ tag | e }}</a>
+        {% endfor %}
+      </div>
+    {% endif %}
+{% endmacro %}
+
+{# ...or use renderEventPreviews to show previews of all items on a page (date and title) #}
+
+{% macro renderEventPreviews(items, pageUrl) %}
+  {% if items %}
+    {% for item in items %}
+      {{ renderEventPreview(item, pageUrl) }}
+    {% endfor %}
+  {% else %}
+    <h4>{{ __('There are no events yet.') }}</h4>
+  {% endif %}
+{% endmacro %}
+
+{% macro renderEventPreview(item, pageUrl) %}
+  <div class="apos-event">
+    <div class="apos-event-heading">
+      <h4><a href="{{ pageUrl }}/{{ item.slug }}">{{ item.title | e }}</a></h4>
+      <div class="blog-title-divider"></div>
+      <h6><date>{{ eventDateRange(item) }}</date></h6>
+    </div>
+  </div>
+{% endmacro %}
+
+
+{# Outputs a date and, if present, a time. The date is presented without the year unless it #}
+{# is a different year than the present year. Pass the entire timestamp, not just date, and #}
+{# pass the time (if the time is null, it is not output). See eventDateRange #}
+
+{% macro eventDateAndTime(when, timePresent) %}
+  {% if aposIsCurrentYear(when) %}
+    {{ when | date('MMM DD') }}
+  {% else %}
+    {{ when | date('MMM DD [\']YY') }}
+  {% endif %}
+  {% if (timePresent) %}
+    {{ when | date('h:mm a') }}
+  {% endif %}
+{% endmacro %}
+
+{# Copes with startDate, startTime, endDate and endTime, all but the first of which #}
+{# are optional, and outputs something reasonable for each combination. NOTE: #}
+{# RSS feeds use this. #}
+
+{% macro eventDateRange(item) %}
+  {{ eventDateAndTime(item.start, item.startTime) }}
+  {% if (item.startDate != item.endDate) or (item.startTime != item.endTime) %}
+    &ndash;
+    {{ eventDateAndTime(item.end, item.endTime) }}
+  {% endif %}
+{% endmacro %}
+

@@ -1,0 +1,2 @@
+אנא אשר כדי להציג באתר <br />
+<a href="{{ url }}" target="_blank">{{ url }}</a>
