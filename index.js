@@ -127,6 +127,24 @@ comments.SnippetsComments = function(options, callback) {
 		res.send('sent');
 	});
 
+	// Removing Approval
+	app.get('/apos-snippets-comments/removing_approvel_comment/:id', function(req, res) {
+		var comment_id = apos.sanitizeString(req.params.id);
+		if(req.user.permissions.admin == true) {
+			apos.db.collection("aposComments", function(err, aposComments) {
+				if(err)
+					console.log("ERR 7.3 ", err);
+
+					var ObjectId = require('mongodb').ObjectID;
+					aposComments.update({_id: ObjectId(comment_id)}, {$set: {approved: false}}, function(err, doc) {
+						if(err)
+							console.log("ERR 7.4 ", err);
+
+						console.log('comment unapproved');
+					});
+			});
+		}
+	});
 	// Approving a comment
 	app.get('/apos-snippets-comments/approve_comment/:id', function(req, res) {
 		var comment_id = apos.sanitizeString(req.params.id);
