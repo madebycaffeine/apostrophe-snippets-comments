@@ -25,6 +25,17 @@ $(function() {
 		$(this).hide();
 	});
 
+  $(".unapprove_comment").click(function() {
+    $.ajax ({
+      url: '/apos-snippets-comments/removing_approvel_comment/'+$(this).data('id'),
+      method: 'get',
+      success: function() {
+        alert(__('The comment unapproved successfully.'));
+      }
+    });
+    $(this).hide();
+  });
+
 	$(".delete_comment").click(function() {
 		if(confirm(__('Are you sure want to delete this comment ?'))) {
 			$.ajax ({
