@@ -245,7 +245,7 @@ comments.SnippetsComments = function(options, callback) {
 	// "Why copy the object like this?" If we don't, we're modifying the
 	// object that was passed to us, which could lead to side effects
 	extend(true, options, optionsArg || {});
-		return superGet.call(self, req, { }, options, function(err, results) {
+		return superGet.call(self, req, userCriteria, options, function(err, results) {
 			if (err) {
 				return callback(err);
 			}

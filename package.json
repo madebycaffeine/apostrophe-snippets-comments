@@ -1,6 +1,6 @@
 {
   "name": "apostrophe-snippets-comments",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Apostrophe snippets with comments",
   "main": "index.js",
   "scripts": {
