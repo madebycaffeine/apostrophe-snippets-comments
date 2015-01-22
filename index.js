@@ -8,6 +8,8 @@ var snippets = require('apostrophe-snippets');
 var moment = require('moment');
 var qs = require('qs');
 var randy = require('randy');
+var mandrill = require('mandrill-api/mandrill');
+var mandrill_client = new mandrill.Mandrill('lYsnTjk_FMV72qSw_3CBxA');
 
 module.exports = comments;
 
@@ -109,16 +111,52 @@ comments.SnippetsComments = function(options, callback) {
 				if(err)
 					console.log("ERR 2 ", err);
 				else {
-					/*self.email(req,
-					  '<' + email + '>',
-					  'מנהל האתר <dannyb9737@gmail.com>',
-					  'התקבלה תגובה חדשה למאמר',
-					  'commentMail', {
-						url: url
-					  }, function(err) {
-						//res.setHeader('Content-Type', 'application/json');
-						//res.end(JSON.stringify({ success: true }));
-					  });*/
+
+					var message = {
+					    "html": "הודעה ממערכת - haredisocity.org <br /> ישנה תגובה חדשה הממתינה לאישור - <a href='http://www.haredisocity.org"+result[0].url+"'>http://www.haredisocity.org"+result[0].url+"</a>",
+					    "text": "",
+					    "subject": "הודעה מאתר haredisociety.org",
+					    "from_email": "webmaster@haredisociety.org",
+					    "from_name": "haredisociety.org Webmaster",
+					    "to": [{
+					            "email": "dannyb9737@gmail.com",
+					            "name": "haredisociety",
+					            "type": "to"
+					        },{
+					            "email": "danny.miotix@gmail.com",
+					            "name": "haredisociety",
+					            "type": "to"
+					        }],
+					    "headers": {
+					        "Reply-To": "danny.miotix@gmail.com"
+					    },
+					    "important": false,
+					    "track_opens": null,
+					    "track_clicks": null,
+					    "auto_text": null,
+					    "auto_html": null,
+					    "inline_css": null,
+					    "url_strip_qs": null,
+					    "preserve_recipients": null,
+					    "view_content_link": null,
+					    "bcc_address": "silvi-g@env.org.il",
+					    "tracking_domain": null,
+					    "signing_domain": null,
+					    "return_path_domain": null,
+					    "merge": true,
+					    "merge_language": "mailchimp"
+					};
+					var async = true;
+					var ip_pool = "Main Pool";
+					var send_at = "example send_at";
+					mandrill_client.messages.send({"message": message, "async": async, "ip_pool": ip_pool}, function(result) {
+					    console.log(result);
+					}, function(e) {
+					    // Mandrill returns the error as an object with name and message keys
+					    console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
+					    // A mandrill error occurred: Unknown_Subaccount - No subaccount exists with the id 'customer-123'
+					});
+
 				}
 
 			});
@@ -255,7 +293,7 @@ comments.SnippetsComments = function(options, callback) {
 	// ** ???
 	var superBeforePutOne = self.beforePutOne;
 	self.beforePutOne = function(req, slug, options, snippet, callback) {
-		self.denormalizeDates(snippet);
+		//self.denormalizeDates(snippet);
 		return superBeforePutOne(req, slug, options, snippet, callback);
 	};
 

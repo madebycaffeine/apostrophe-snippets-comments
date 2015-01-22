@@ -22,7 +22,10 @@ $(function() {
 				alert(__('The comment approved successfully.'));
 			}
 		});
-		$(this).hide();
+
+    $(this).parent().parent().children('.whenCommentApproved').show();
+    $(this).parent().parent().children('.whenCommentApproved').addClass('inlineBlock');
+    $(this).parent().hide();
 	});
 
   $(".unapprove_comment").click(function() {
@@ -33,7 +36,10 @@ $(function() {
         alert(__('The comment unapproved successfully.'));
       }
     });
-    $(this).hide();
+
+    $(this).parent().parent().children('.whenCommentIsntApproved').show();
+    $(this).parent().parent().children('.whenCommentIsntApproved').addClass('inlineBlock');
+    $(this).parent().hide();
   });
 
 	$(".delete_comment").click(function() {
@@ -86,6 +92,7 @@ $(function() {
 				title: $('#f_title').val(),
 				message: $('#f_message').val(),
 				reply_of_message_id: $('#reply_of_message_id').val(),
+        url: $('#url').val(),
 				post_id: $('#post_id').val()
 			},
 			success: function() {

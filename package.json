@@ -1,6 +1,6 @@
 {
   "name": "apostrophe-snippets-comments",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Apostrophe snippets with comments",
   "main": "index.js",
   "scripts": {
@@ -20,22 +20,26 @@
   },
   "license": "MIT",
   "dependencies": {
-    "async": "0.8.x",
-    "lodash": "2.4.x",
-    "extend": "~1.1.3",
     "apostrophe-snippets": "0.5.x",
-    "moment": "~2.0.0",
+    "async": "0.8.x",
+    "extend": "~1.1.3",
     "geocoder": "*",
+    "lodash": "2.4.x",
+    "mandrill-api": "^1.0.41",
+    "moment": "~2.0.0",
+    "mongodb": "^1.4.26",
     "qs": "~0.6.5",
     "random-words": "0.0.1",
-    "randy": "~1.4.2",
-    "mongodb": "^1.4.26"
+    "randy": "~1.4.2"
   },
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/madebycaffeine/apostrophe-snippets-comments/issues"
   },
   "homepage": "https://github.com/madebycaffeine/apostrophe-snippets-comments",
-  "_id": "apos-snippets-comments@0.0.1",
-  "_from": "apos-snippets-comments@"
+  "_id": "apostrophe-snippets-comments@0.0.2",
+  "_from": "apostrophe-snippets-comments@0.0.2",
+  "readme": "# apostrophe-snippets-comments\nAdding snippets with comments\n",
+  "gitHead": "eddc766d5214e0d6c785976e888424df6929ab86",
+  "_shasum": "cd5930316a289953ed185209d4487b4e95b38c98"
 }
