@@ -8,6 +8,7 @@ $(function() {
 		"Your comment added successfully": "תודה רבה, תגובתך התקבלה ובמידה ותאושר תעלה לאתר",
 		'Title field is requird':'שדה כותרת הוא שדה חובה',
 		'Email field is requird':'שדה דוא"ל הוא שדה חובה',
+    "Email isn't correct":'דוא״ל אינו תקין',
 		'Name field is requird':'שדה השם הוא שדה חובה',
 		'The comment deleted successfully.': 'התגובה נמחקה בהצלחה',
 		'The comment approved successfully.': 'התגובה אושרה בהצלחה',
@@ -57,6 +58,11 @@ $(function() {
 		}
 	});
 
+  var validateEmail = function(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  };
+
 	// On clicking the 'Add comment' it change the value of `reply_of_message_id` to the current comment id.
 	$(".post-comment").click(function() {
 		$("#reply_of_message_id").val($(this).data('comment-id'));
@@ -81,6 +87,11 @@ $(function() {
 			alert(__('Title field is requird'));
 			return false;
 		}
+
+    if(!validateEmail($('#f_email').val())) {
+      alert(__("Email isn't correct"))
+      return false;
+    }
 
 
 		$.ajax ({
