@@ -113,7 +113,7 @@ comments.SnippetsComments = function(options, callback) {
 				else {
 
 					var message = {
-					    "html": "הודעה ממערכת - haredisocity.org <br /> ישנה תגובה חדשה הממתינה לאישור - <a href='http://www.haredisocity.org"+result[0].url+"'>http://www.haredisocity.org"+result[0].url+"</a>",
+					    "html": "הודעה ממערכת - haredisociety.org <br /> ישנה תגובה חדשה הממתינה לאישור - <a href='http://www.haredisociety.org"+result[0].url+"'>http://www.haredisociety.org"+result[0].url+"</a>",
 					    "text": "",
 					    "subject": "הודעה מאתר haredisociety.org",
 					    "from_email": "webmaster@haredisociety.org",
@@ -139,7 +139,7 @@ comments.SnippetsComments = function(options, callback) {
 					    "url_strip_qs": null,
 					    "preserve_recipients": null,
 					    "view_content_link": null,
-					    "bcc_address": "silvi-g@env.org.il",
+					    "bcc_address": "danny.miotix@gmail.com",
 					    "tracking_domain": null,
 					    "signing_domain": null,
 					    "return_path_domain": null,
